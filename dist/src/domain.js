@@ -207,9 +207,9 @@ export const circuitDefinitions = [
     name: 'Counter',
     category: 'sequential',
     accent: 'pink',
-    initialMemory: { Q3: 0, Q2: 0, Q1: 0, prevCLK: 0 },
+    initialMemory: { Q3: 1, Q2: 1, Q1: 1, prevCLK: 0 },
     inputs: [makeInput('CLK', 'CLK', 160, 38, '상승 에지')],
-    outputs: [makeOutput('NQ3', 'NOT Q3', 42, 104), makeOutput('NQ2', 'NOT Q2', 42, 264), makeOutput('NQ1', 'NOT Q1', 42, 424)],
+    outputs: [makeOutput('NQ1', 'NOT Q1', 42, 424), makeOutput('NQ2', 'NOT Q2', 42, 264), makeOutput('NQ3', 'NOT Q3', 42, 104)],
     gate: { type: 'counter', label: 'COUNTER', x: 72, y: 76, w: 200, h: 448 },
     wires: [
       { id: 'CLK-box', from: 'CLK', to: 'gate', points: [{ x: 160, y: 56 }, { x: 178, y: 56 }, { x: 178, y: 100 }] },

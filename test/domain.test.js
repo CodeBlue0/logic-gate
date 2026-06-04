@@ -102,17 +102,17 @@ test('Counter follows the cascaded D flipflop ripple loop on CLK rising edge', (
   const circuit = getCircuit('counter');
   let state = createCircuitState(circuit);
   let evaluation = evaluateCircuit(circuit, state);
-  assert.deepEqual(evaluation.outputs, { NQ3: 1, NQ2: 1, NQ1: 1 });
+  assert.deepEqual(evaluation.outputs, { NQ1: 0, NQ2: 0, NQ3: 0 });
 
   const expected = [
-    { NQ3: 0, NQ2: 0, NQ1: 0 },
-    { NQ3: 1, NQ2: 0, NQ1: 0 },
-    { NQ3: 0, NQ2: 1, NQ1: 0 },
-    { NQ3: 1, NQ2: 1, NQ1: 0 },
-    { NQ3: 0, NQ2: 0, NQ1: 1 },
-    { NQ3: 1, NQ2: 0, NQ1: 1 },
-    { NQ3: 0, NQ2: 1, NQ1: 1 },
-    { NQ3: 1, NQ2: 1, NQ1: 1 }
+    { NQ1: 0, NQ2: 0, NQ3: 1 },
+    { NQ1: 0, NQ2: 1, NQ3: 0 },
+    { NQ1: 0, NQ2: 1, NQ3: 1 },
+    { NQ1: 1, NQ2: 0, NQ3: 0 },
+    { NQ1: 1, NQ2: 0, NQ3: 1 },
+    { NQ1: 1, NQ2: 1, NQ3: 0 },
+    { NQ1: 1, NQ2: 1, NQ3: 1 },
+    { NQ1: 0, NQ2: 0, NQ3: 0 }
   ];
 
   for (const output of expected) {
@@ -170,5 +170,5 @@ test('switching circuits creates deterministic reset state', () => {
   const flipflopState = createCircuitState(getCircuit('d-flipflop'));
   assert.deepEqual(flipflopState.memory, { master: 0, Q: 0 });
   const counterState = createCircuitState(getCircuit('counter'));
-  assert.deepEqual(counterState.memory, { Q3: 0, Q2: 0, Q1: 0, prevCLK: 0 });
+  assert.deepEqual(counterState.memory, { Q3: 1, Q2: 1, Q1: 1, prevCLK: 0 });
 });
